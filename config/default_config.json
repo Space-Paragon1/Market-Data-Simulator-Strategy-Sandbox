@@ -1,0 +1,68 @@
+{
+  "_comment": "Market Data Simulator — default configuration",
+
+  "seed": 42,
+  "duration_seconds": 3600,
+  "tick_ms": 100,
+  "initial_cash": 1000000.0,
+  "symbol": "AAPL",
+  "output_dir": "output",
+
+  "market": {
+    "initial_price": 150.0,
+    "half_spread":   0.05,
+    "annual_vol":    0.25,
+    "annual_drift":  0.0
+  },
+
+  "exchange": {
+    "commission_per_share": 0.001,
+    "slippage_bps": 1.0
+  },
+
+  "risk": {
+    "max_position":   1000,
+    "max_order_rate":   30,
+    "max_daily_loss": 50000.0,
+    "max_order_size":   500
+  },
+
+  "strategies": [
+    {
+      "type": "market_maker",
+      "id":   "mm",
+      "enabled": true,
+      "params": {
+        "order_size":      100,
+        "spread_bps":       10.0,
+        "max_inventory":   500,
+        "skew_factor":       0.3,
+        "vol_spread_mult":   1.8
+      }
+    },
+    {
+      "type": "momentum",
+      "id":   "mom",
+      "enabled": true,
+      "params": {
+        "fast_period":      5,
+        "slow_period":     20,
+        "target_position": 200,
+        "threshold_bps":    2.0,
+        "min_ticks":       30
+      }
+    },
+    {
+      "type": "mean_reversion",
+      "id":   "mr",
+      "enabled": true,
+      "params": {
+        "lookback":    40,
+        "entry_z":    1.5,
+        "exit_z":     0.3,
+        "order_size": 150,
+        "min_ticks":   50
+      }
+    }
+  ]
+}
