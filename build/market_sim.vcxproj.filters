@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\DELL\OneDrive - Grambling State University\Desktop\Market-Data-Simulator-Strategy-Sandbox\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\DELL\OneDrive - Grambling State University\Desktop\Market-Data-Simulator-Strategy-Sandbox\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="C:\Users\DELL\OneDrive - Grambling State University\Desktop\Market-Data-Simulator-Strategy-Sandbox\build\_deps\nlohmann_json-src\nlohmann_json.natvis" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{63553BF4-634B-38E7-91EF-11E4BCB8CC15}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

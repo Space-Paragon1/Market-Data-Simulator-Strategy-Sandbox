@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/nlohmann_json-populate"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/f8b98348e663da1334f5eb50c90098e0/nlohmann_json-populate.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/91680dd83aae539f04d84d0aaa1ac242/nlohmann_json-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-subbuild/CMakeFiles/5f48a0e73a5cb26e72415571baaa4a36/nlohmann_json-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"nlohmann_json-populate"
+		],
+		"name" : "nlohmann_json-populate"
+	}
+}

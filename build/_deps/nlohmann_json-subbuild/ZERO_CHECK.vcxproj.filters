@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\DELL\OneDrive - Grambling State University\Desktop\Market-Data-Simulator-Strategy-Sandbox\build\_deps\nlohmann_json-subbuild\CMakeFiles\f8b98348e663da1334f5eb50c90098e0\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D657A1FC-B15F-388F-A348-4193CC42D843}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

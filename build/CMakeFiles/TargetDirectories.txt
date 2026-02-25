@@ -1,0 +1,4 @@
+C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/CMakeFiles/market_sim.dir
+C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/DELL/OneDrive - Grambling State University/Desktop/Market-Data-Simulator-Strategy-Sandbox/build/_deps/nlohmann_json-build/CMakeFiles/ALL_BUILD.dir
