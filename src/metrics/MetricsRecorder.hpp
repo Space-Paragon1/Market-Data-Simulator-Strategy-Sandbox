@@ -9,6 +9,7 @@
 #include <cmath>
 #include <numeric>
 #include <unordered_map>
+#include <unordered_set>
 #include <stdexcept>
 
 // ── Per-strategy recorded data ─────────────────────────────────────────────────
@@ -67,14 +68,21 @@ public:
     SummaryMetrics computeSummary(const std::string& name) const {
         const auto& rec = records_.at(name);
         SummaryMetrics m;
-        m.strategy       = name;
-        m.total_orders   = static_cast<int>(rec.orders.size());
-        m.total_fills    = static_cast<int>(rec.fills.size());
+        m.strategy        = name;
+        m.total_orders    = static_cast<int>(rec.orders.size());
+        m.total_fills     = static_cast<int>(rec.fills.size());
         m.rejected_orders = rec.rejected;
-        m.cancelled_orders = rec.cancelled;
-        m.fill_ratio     = (m.total_orders > 0)
-                           ? static_cast<double>(m.total_fills) / m.total_orders
+        m.cancelled_orders= rec.cancelled;
+
+        // Fill ratio = fraction of submitted orders that received ≥ 1 fill.
+        // Count unique order IDs that appear in the fills list.
+        {
+            std::unordered_set<std::string> filled_ids;
+            for (auto& f : rec.fills) filled_ids.insert(f.order_id);
+            m.fill_ratio = (m.total_orders > 0)
+                           ? static_cast<double>(filled_ids.size()) / m.total_orders
                            : 0.0;
+        }
 
         if (!rec.snapshots.empty())
             m.final_pnl = rec.snapshots.back().total_pnl;
@@ -175,25 +183,58 @@ private:
         return mdd;
     }
 
-    // Annualised Sharpe ratio from PnL curve (tick-level returns)
-    // Assumes ticks are uniform; annualises assuming 252 days × 6.5 hrs × 3600 s
+    // Annualised Sharpe ratio.
+    // Strategy: bucket tick snapshots into "simulated days" (each day =
+    // 6.5 hrs × 3600 s worth of ticks at whatever tick_ms was used).
+    // Compute daily PnL returns, then Sharpe = mean/std * sqrt(252).
+    // Falls back to raw tick-level if fewer than 2 days of data.
     static double sharpe(const std::vector<PortSnapshot>& snaps) {
         if (snaps.size() < 2) return 0.0;
-        std::vector<double> rets;
-        rets.reserve(snaps.size() - 1);
-        for (size_t i = 1; i < snaps.size(); ++i)
-            rets.push_back(snaps[i].total_pnl - snaps[i-1].total_pnl);
+
+        // One simulated day in nanoseconds (6.5 trading hours)
+        const int64_t ns_per_day = static_cast<int64_t>(6.5 * 3600.0 * 1e9);
+
+        // Build daily returns by sampling PnL at each day boundary
+        std::vector<double> daily_rets;
+        if (!snaps.empty()) {
+            int64_t day_start_ts  = snaps.front().ts;
+            double  day_start_pnl = snaps.front().total_pnl;
+            for (auto& s : snaps) {
+                if (s.ts - day_start_ts >= ns_per_day) {
+                    daily_rets.push_back(s.total_pnl - day_start_pnl);
+                    day_start_ts  = s.ts;
+                    day_start_pnl = s.total_pnl;
+                }
+            }
+        }
+
+        // Fall back to tick-level if simulation shorter than one day
+        const std::vector<double>* rets_ptr = &daily_rets;
+        std::vector<double> tick_rets;
+        if (daily_rets.size() < 2) {
+            tick_rets.reserve(snaps.size() - 1);
+            for (size_t i = 1; i < snaps.size(); ++i)
+                tick_rets.push_back(snaps[i].total_pnl - snaps[i-1].total_pnl);
+            rets_ptr = &tick_rets;
+        }
+
+        const auto& rets = *rets_ptr;
+        if (rets.size() < 2) return 0.0;
+
         double mu = 0.0;
         for (double r : rets) mu += r;
-        mu /= rets.size();
+        mu /= static_cast<double>(rets.size());
+
         double var = 0.0;
         for (double r : rets) var += (r - mu) * (r - mu);
-        double sd = std::sqrt(var / rets.size());
+        double sd = std::sqrt(var / static_cast<double>(rets.size()));
         if (sd < 1e-12) return 0.0;
-        // Annualise: sqrt(ticks_per_year)
-        // Default 100ms ticks: 252 * 6.5 * 3600 * 10 = 59,022,000
-        // We use a conservative 252 * 6.5 * 3600 * 10 ticks/year
-        double tpy = 252.0 * 6.5 * 3600.0 * 10.0;
-        return (mu / sd) * std::sqrt(tpy);
+
+        // Annualise: daily returns → *sqrt(252); tick returns → *sqrt(ticks/year)
+        double ann_factor = (rets_ptr == &daily_rets)
+            ? std::sqrt(252.0)
+            : std::sqrt(252.0 * 6.5 * 3600.0 * 10.0);  // 100ms ticks
+
+        return (mu / sd) * ann_factor;
     }
 };
