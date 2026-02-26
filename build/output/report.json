@@ -5,11 +5,11 @@
     "symbol": "AAPL",
     "tick_ms": 100,
     "total_ticks": 36000,
-    "wall_seconds": 0.2895808
+    "wall_seconds": 1.2786305
   },
   "strategies": {
     "mm": {
-      "fill_ratio": 0.09990277777777777,
+      "fill_ratio": 0.07473611111111111,
       "final_pnl": -26399.000000085798,
       "max_drawdown": -26406.075892221532,
       "max_position": 300,
@@ -20,7 +20,7 @@
       "total_orders": 72000
     },
     "mom": {
-      "fill_ratio": 2.138095238095238,
+      "fill_ratio": 1.0,
       "final_pnl": -2440.500000005588,
       "max_drawdown": -2510.0019729045453,
       "max_position": 200,
@@ -31,7 +31,7 @@
       "total_orders": 210
     },
     "mr": {
-      "fill_ratio": 1.5723860589812333,
+      "fill_ratio": 0.9095174262734584,
       "final_pnl": 27360.599999832688,
       "max_drawdown": -268.4672697907081,
       "max_position": 300,
